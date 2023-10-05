@@ -17,6 +17,8 @@ def print_title():
     print(" |___|                                                                                            |___| ")
     print("(_____)------------------------------------------------------------------------------------------(_____)")
 
+def get_user_input():
+    pass
 
 def set_map():
     pass
@@ -29,14 +31,16 @@ def put_flag():
 
 def discover_box():
     pass
-def choose_option():
+def choose_action():
     pass
 
+def game_over():
+    pass
 
-def game():
+def start_game():
     print_title()
     set_map()
     print_grid()
-    choose_option()
+    choose_action()
 
-game()
+start_game()
