@@ -1,13 +1,15 @@
 import sys
 import config
-import board
+import board as board_controller
 import input_handler
 import display
+
 
 def start_game():
     # say hello
     display.print_welcome()
 
+    # Choose an action to start game and choose a difficulty
     start = False
     while not start:
         user_action = input_handler.get_int_user(display.start_menu())
@@ -32,6 +34,8 @@ def start_game():
                     print("Sorry, currently doesn't works. Wait the next version.")
                 else:
                     print("It's not a choice option")
+            board = board_controller.initialize_board(grid_size, nbr_mines)
+            play_game(board)
         elif user_action == 2:
             # charge game
             print("Sorry, the load functionality is for another version.")
@@ -39,6 +43,10 @@ def start_game():
             sys.exit()
         else:
             print("It's not a choice option")
+
+
+def play_game(board):
+    display.display_board(board)
 
 
 if __name__ == "__main__":
