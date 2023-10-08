@@ -1,4 +1,5 @@
 import random
+import display
 
 
 def count_adjacent_mines(board, row, col):
@@ -24,10 +25,46 @@ def count_adjacent_mines(board, row, col):
 
         # Check if the adjacent cell is within the bounds of the board
         if 0 <= new_row < rows and 0 <= new_col < cols:
-            if board[new_row][new_col][1] == 'X':
+            if board[new_row][new_col][1] == '💣':
                 mine_count += 1
 
     return mine_count
+
+
+def reveal_empty_areas(board, coord_x, coord_y):
+    if (
+            0 <= coord_x < len(board) and
+            0 <= coord_y < len(board[0]) and
+            board[coord_x][coord_y][0] == 'C'
+    ):
+        if board[coord_x][coord_y][1] == 0:
+            # Révéler la case si elle est vide
+            board[coord_x][coord_y][0] = 'R'
+
+            # Vérifiez les cases adjacentes en récursif
+            for dx in [-1, 0, 1]:
+                for dy in [-1, 0, 1]:
+                    if dx == 0 or dy == 0:
+                        reveal_empty_areas(board, coord_x + dx, coord_y + dy)
+        else:
+            # Si la case n'est pas vide et a une valeur > 0, révélez uniquement cette case
+            board[coord_x][coord_y][0] = 'R'
+
+def action_box(board, coord_x, coord_y, action):
+    if action == 'R':
+        if board[coord_x][coord_y][0] == 'C':
+            # Révéler la case si l'action est 'R' et qu'elle est cachée
+            if board[coord_x][coord_y][1] == 0:
+                # Si la case est vide, révélez les cases adjacentes
+                reveal_empty_areas(board, coord_x, coord_y)
+            else:
+                board[coord_x][coord_y][0] = 'R'
+    elif action == 'F':
+        board[coord_x][coord_y][0] = 'F'
+    elif action == 'U':
+        if board[coord_x][coord_y][0] == 'F':
+            board[coord_x][coord_y][0] = 'C'
+    display.display_board(board)
 
 
 def initialize_board(grid_size, nbr_mines):
@@ -51,16 +88,16 @@ def initialize_board(grid_size, nbr_mines):
         col = random.randint(0, cols - 1)
 
         # Check if the cell is already a mine
-        if board[row][col][1] == 'X':
+        if board[row][col][1] == '💣':
             continue
 
-        board[row][col][1] = 'X'
+        board[row][col][1] = '💣'
         placed_mines += 1
 
         # Count mines in neighboring cells
     for row in range(rows):
         for col in range(cols):
-            if board[row][col][1] != 'X':
+            if board[row][col][1] != '💣':
                 board[row][col][1] = count_adjacent_mines(board, row, col)
 
     for line in board:
