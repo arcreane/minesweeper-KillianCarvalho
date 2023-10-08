@@ -28,15 +28,16 @@ def print_difficulty():
 
 
 def display_board(board):
-   for line in board:
-       for cell in line:
-           if cell[0] == 'C':
-               print("C", end=" ")
-           elif cell[0] == 'F':
-               print("F", end=" ")
-           else:
-               print(cell[1], end=" ")
-       print()
+    for i, line in enumerate(board):
+        print(f"{i} ", end="")
+        for cell in line:
+            if cell[0] == 'C':
+                print("⬛", end=" ")
+            elif cell[0] == 'F':
+                print("🚩", end=" ")
+            else:
+                print(cell[1], end=" ")
+        print()
 
 def display_solution(board):
     """
@@ -52,7 +53,7 @@ def display_solution(board):
         print(f"{row:2} ", end="")
         for col in range(cols):
             cell = board[row][col]
-            if cell == 'X':
+            if cell == '💣':
                 print("💣", end=" ")
             elif cell == 0:
                 print("■", end=" ")
