@@ -20,3 +20,5 @@ def start_game():
     display.print_difficulty()
     user_diff = input_handler.get_user_difficulty()
 
+if __name__ == "__main__":
+    start_game()
