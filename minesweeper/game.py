@@ -50,8 +50,14 @@ def play_game(board):
     display.display_board(board)
     while not game_over:
         user_action = input_handler.get_user_action()
+        if user_action[2] == 'R':
+            if board[user_action[0]][user_action[1]][1] == "💣":
+                print("BOOM ! You have failed ! Try again")
+                game_over = True
         board_controller.action_box(board, user_action[0], user_action[1], user_action[2])
-
+        if board_controller.has_win(board):
+            print("GG Well play !")
+            game_over = True
 
 
 if __name__ == "__main__":
