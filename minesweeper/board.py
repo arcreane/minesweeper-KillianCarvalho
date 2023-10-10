@@ -1,6 +1,13 @@
 import random
 import display
 
+def has_win(board):
+    for row in board:
+        for cell in row:
+            state, value = cell[0], cell[1]
+            if state == 'C' and value != '💣':
+                return False
+    return True
 
 def count_adjacent_mines(board, row, col):
     """
