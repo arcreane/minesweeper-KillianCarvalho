@@ -1,7 +1,7 @@
 def get_user_action():
     coord_x = get_int_user("Choose a X → coordinate : ")
     coord_y = get_int_user("Choose a Y ↑ coordinate : ")
-    action = get_int_user("Choose an action:\n\t1- returned\n2- flagged")
+    action = get_int_user("Choose an action:\n\t1- returned\n\t2- flagged")
     if action == 1:
         action = 'R'
     elif action == 2:
