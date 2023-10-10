@@ -46,7 +46,12 @@ def start_game():
 
 
 def play_game(board):
+    game_over = False
     display.display_board(board)
+    while not game_over:
+        user_action = input_handler.get_user_action()
+        board_controller.action_box(board, user_action[0], user_action[1], user_action[2])
+
 
 
 if __name__ == "__main__":
