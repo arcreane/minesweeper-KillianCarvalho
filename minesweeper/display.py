@@ -20,11 +20,11 @@ def print_welcome():
 
 
 def start_menu():
-    return "Choose an action :\t\n1- start a new game\n2- load game\n3- exit"
+    return "Choose an action :\n\t1- start a new game\n\t2- load game\n\t3- exit"
 
 
 def print_difficulty():
-    return "Choose a diffculty :\t\n1- Beginner\n2- Intermediate\n3- Expert\n4- Custom"
+    return "Choose a difficulty :\n\t1- Beginner\n\t2- Intermediate\n\t3- Expert\n\t4- Custom"
 
 
 def display_board(board):
