@@ -4,7 +4,6 @@ import board as board_controller
 import input_handler
 import display
 
-
 def start_game():
     # say hello
     display.print_welcome()
@@ -44,7 +43,6 @@ def start_game():
         else:
             print("It's not a choice option")
 
-
 def play_game(board):
     game_over = False
     display.display_board(board)
@@ -58,7 +56,6 @@ def play_game(board):
         if board_controller.has_win(board):
             print("GG Well play !")
             game_over = True
-
 
 if __name__ == "__main__":
     start_game()
