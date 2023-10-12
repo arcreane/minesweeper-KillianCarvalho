@@ -33,6 +33,8 @@ def get_valid_difficulty(input_handler, display):
 
     return get_valid_difficulty(input_handler, display)
 
+def cheat():
+    display.display_win()
 
 def start_game():
     """
@@ -66,6 +68,8 @@ def start_game():
             print("Sorry, the load functionality is for another version.")
         elif user_action == 3:
             sys.exit()
+        elif user_action == 5:
+            cheat()
         else:
             print("It's not a choice option")
 
