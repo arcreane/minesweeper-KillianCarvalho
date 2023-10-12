@@ -12,9 +12,9 @@ def print_welcome():
 |                                                                                              |
 |                                                                                              |
 |                                                                                              |
-|                                   Welcome in minesweeper terminal !                          |
+|                               Welcome in minesweeper terminal !                              |
 |                                                                                              |
-|                                           by Qwercus @2023                                   |
+|                                       by Qwercus @2023                                       |
 +==============================================================================================+
 """)
 
@@ -26,18 +26,28 @@ def start_menu():
 def print_difficulty():
     return "Choose a difficulty :\n\t1- Beginner\n\t2- Intermediate\n\t3- Expert\n\t4- Custom"
 
-
 def display_board(board):
+    """
+    Display the game board in the console with x-axis numbers at the bottom.
+
+    Args:
+        board (list of lists): The game board to be displayed.
+    """
     for i, line in enumerate(board):
-        print(f"{i} ", end="")
+        print(f"{i} ", end="\t")
         for cell in line:
             if cell[0] == 'C':
-                print("⬛", end=" ")
+                print("■  ", end="")
             elif cell[0] == 'F':
-                print("🚩", end=" ")
+                print("🚩  ", end="")
             else:
-                print(cell[1], end=" ")
+                print(cell[1], " ", end="")
         print()
+    # Display number on axis x
+    print("   ", end="")
+    for col in range(len(board[0])):
+        print(f"{col:2} ", end="")
+    print("")
 
 def display_solution(board):
     """
@@ -54,11 +64,11 @@ def display_solution(board):
         for col in range(cols):
             cell = board[row][col]
             if cell == '💣':
-                print("💣", end=" ")
+                print("💣  ", end="")
             elif cell == 0:
-                print("■", end=" ")
+                print("■  ", end="")
             else:
-                print(cell, end=" ")
+                print(cell, " ", end="")
         print("")
 
     # Display number on axis x
