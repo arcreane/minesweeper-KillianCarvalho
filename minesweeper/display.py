@@ -1,3 +1,5 @@
+import sys
+import time
 def print_welcome():
     print("""
 +==============================================================================================+
@@ -34,7 +36,7 @@ def display_board(board):
         board (list of lists): The game board to be displayed.
     """
     for i, line in enumerate(board):
-        print(f"{i} ", end="\t")
+        print(f"{i} ", end="")
         for cell in line:
             if cell[0] == 'C':
                 print("■  ", end="")
@@ -76,3 +78,44 @@ def display_solution(board):
     for col in range(cols):
         print(f"{col:2} ", end="")
     print("")
+
+
+def display_loose():
+    text = '''
+         __   __                            _                            
+         \ \ / /   ___    _  _      o O O  | |      ___     ___     ___  
+          \ V /   / _ \  | +| |    o       | |__   / _ \   (_-<    / -_) 
+          _|_|_   \___/   \_,_|   TS__[O]  |____|  \___/   /__/_   \___| 
+        _| """ |_|"""""|_|"""""| {======|_|"""""|_|"""""|_|"""""|_|"""""|
+        "`-0-0-'"`-0-0-'"`-0-0-'./o--000'"`-0-0-'"`-0-0-'"`-0-0-'"`-0-0-'
+    '''
+
+    lines = text.split('\n')
+    width = max(len(line) for line in lines)
+
+    # while True:
+    for i in range(width):
+        for line in lines:
+            print(line[i:i + width])
+        time.sleep(0.1)
+        sys.stdout.write("\033[F" * len(lines))  # Remonte le curseur pour effacer
+
+def display_win():
+    text = '''
+          \ \ / /   ___    _  _      o O O\ \    / / (_)    _ _   
+          \ V /   / _ \  | +| |    o      \ \/\/ /  | |   | ' \  
+          _|_|_   \___/   \_,_|   TS__[O]  \_/\_/  _|_|_  |_||_| 
+        _| """ |_|"""""|_|"""""| {======|_|"""""|_|"""""|_|"""""|
+        "`-0-0-'"`-0-0-'"`-0-0-'./o--000'"`-0-0-'"`-0-0-'"`-0-0-'
+    '''
+
+    lines = text.split('\n')
+    width = max(len(line) for line in lines)
+
+    # while True:
+    for i in range(width):
+        for line in lines:
+            print(line[i:i + width])
+        time.sleep(0.1)
+        sys.stdout.write("\033[F" * len(lines))  # Remonte le curseur pour effacer
+

@@ -1,8 +1,10 @@
 import sys
+import time
 import config
 import board as board_controller
 import input_handler
 import display
+import utils
 
 def get_valid_difficulty(input_handler, display):
     """
@@ -84,18 +86,21 @@ def play_game(board):
         board = initialize_board()
         play_game(board)
     """
+    begin_timer = time.time()
     game_over = False
     display.display_board(board)
     while not game_over:
         user_action = input_handler.get_user_action()
         if user_action[2] == 'R':
             if board[user_action[0]][user_action[1]][1] == "💣":
-                print("BOOM ! You have failed ! Try again")
                 game_over = True
         board_controller.action_box(board, user_action[0], user_action[1], user_action[2])
         if board_controller.has_win(board):
-            print("GG Well play !")
+            display.display_win()
             game_over = True
+    display.display_loose()
+    total_time = time.time() - begin_timer
+    print("time of the game :", utils.format_time(total_time))
 
 if __name__ == "__main__":
     start_game()
