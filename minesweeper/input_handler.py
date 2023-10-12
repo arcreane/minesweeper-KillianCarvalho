@@ -1,3 +1,4 @@
+
 def get_user_action():
     coord_x = get_int_user("Choose a X → coordinate : ")
     coord_y = get_int_user("Choose a Y ↑ coordinate : ")

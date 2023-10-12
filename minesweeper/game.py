@@ -5,6 +5,21 @@ import input_handler
 import display
 
 def get_valid_difficulty(input_handler, display):
+    """
+        This function prompts the user to choose a difficulty level and returns a valid choice.
+
+        Args:
+            input_handler: An object that handles user input.
+            display: An object that provides user interface for displaying options.
+
+        Returns:
+            int: A valid difficulty choice (1, 2, or 3).
+
+        Note:
+        - If the user enters 1, 2, or 3, the function returns that choice.
+        - If the user enters 4, it prints a message indicating that this option is not currently available.
+        - If the user enters any other value, it prints an error message and prompts for input again.
+    """
     difficulty_choice = input_handler.get_int_user(display.print_difficulty())
     if 1 <= difficulty_choice <= 3:
         return difficulty_choice
