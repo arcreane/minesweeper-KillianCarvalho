@@ -17,23 +17,13 @@ def start_game():
             valid_diff = False
             while not valid_diff:
                 difficulty_choice = input_handler.get_int_user(display.print_difficulty())
-                if difficulty_choice == 1:
-                    grid_size = config.EASY_GRID_SIZE
-                    nbr_mines = config.EASY_NUM_MINES
-                    valid_diff = True
-                elif difficulty_choice == 2:
-                    grid_size = config.MEDIUM_GRID_SIZE
-                    nbr_mines = config.MEDIUM_NUM_MINES
-                    valid_diff = True
-                elif difficulty_choice == 3:
-                    grid_size = config.HARD_GRID_SIZE
-                    nbr_mines = config.HARD_NUM_MINES
+                if 1 <= difficulty_choice <= 3:
                     valid_diff = True
                 elif difficulty_choice == 4:
                     print("Sorry, currently doesn't works. Wait the next version.")
                 else:
                     print("It's not a choice option")
-            board = board_controller.initialize_board(grid_size, nbr_mines)
+            board = board_controller.initialize_board(config.CONFIG_DIFFICULTY[difficulty_choice - 1][0], config.CONFIG_DIFFICULTY[difficulty_choice - 1][1])
             play_game(board)
         elif user_action == 2:
             # charge game
