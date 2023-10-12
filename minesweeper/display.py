@@ -1,5 +1,7 @@
 import sys
 import time
+
+
 def print_welcome():
     print("""
 +==============================================================================================+
@@ -28,6 +30,7 @@ def start_menu():
 def print_difficulty():
     return "Choose a difficulty :\n\t1- Beginner\n\t2- Intermediate\n\t3- Expert\n\t4- Custom"
 
+
 def display_board(board):
     """
     Display the game board in the console with x-axis numbers at the bottom.
@@ -46,10 +49,11 @@ def display_board(board):
                 print(cell[1], " ", end="")
         print()
     # Display number on axis x
-    print("   ", end="")
+    print("  ", end="")
     for col in range(len(board[0])):
         print(f"{col:2} ", end="")
     print("")
+
 
 def display_solution(board):
     """
@@ -100,6 +104,7 @@ def display_loose():
         time.sleep(0.1)
         sys.stdout.write("\033[F" * len(lines))  # Remonte le curseur pour effacer
 
+
 def display_win():
     text = '''
           \ \ / /   ___    _  _      o O O\ \    / / (_)    _ _   
@@ -118,4 +123,3 @@ def display_win():
             print(line[i:i + width])
         time.sleep(0.1)
         sys.stdout.write("\033[F" * len(lines))  # Remonte le curseur pour effacer
-

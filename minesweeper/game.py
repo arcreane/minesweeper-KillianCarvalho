@@ -6,6 +6,7 @@ import input_handler
 import display
 import utils
 
+
 def get_valid_difficulty(input_handler, display):
     """
         This function prompts the user to choose a difficulty level and returns a valid choice.
@@ -32,6 +33,7 @@ def get_valid_difficulty(input_handler, display):
 
     return get_valid_difficulty(input_handler, display)
 
+
 def start_game():
     """
     Starts the Minesweeper game.
@@ -56,7 +58,8 @@ def start_game():
         if user_action == 1:
             start = True
             difficulty_choice = get_valid_difficulty(input_handler, display)
-            board = board_controller.initialize_board(config.CONFIG_DIFFICULTY[difficulty_choice - 1][0], config.CONFIG_DIFFICULTY[difficulty_choice - 1][1])
+            board = board_controller.initialize_board(config.CONFIG_DIFFICULTY[difficulty_choice - 1][0],
+                                                      config.CONFIG_DIFFICULTY[difficulty_choice - 1][1])
             play_game(board)
         elif user_action == 2:
             # charge game
@@ -65,6 +68,7 @@ def start_game():
             sys.exit()
         else:
             print("It's not a choice option")
+
 
 def play_game(board):
     """
@@ -92,8 +96,12 @@ def play_game(board):
     while not game_over:
         user_action = input_handler.get_user_action()
         if user_action[2] == 'R':
-            if board[user_action[0]][user_action[1]][1] == "💣":
-                game_over = True
+            if not 0 <= user_action[0] <= len(board[0]) and not 0 <= user_action[1] <= len(board):
+                print("your coordinate x is out of range")
+                continue
+            else:
+                if board[user_action[0]][user_action[1]][1] == "💣":
+                    game_over = True
         board_controller.action_box(board, user_action[0], user_action[1], user_action[2])
         if board_controller.has_win(board):
             display.display_win()
@@ -101,6 +109,7 @@ def play_game(board):
     display.display_loose()
     total_time = time.time() - begin_timer
     print("time of the game :", utils.format_time(total_time))
+
 
 if __name__ == "__main__":
     start_game()

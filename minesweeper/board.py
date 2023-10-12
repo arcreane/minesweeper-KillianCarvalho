@@ -1,6 +1,7 @@
 import random
 import display
 
+
 def has_win(board):
     for row in board:
         for cell in row:
@@ -8,6 +9,7 @@ def has_win(board):
             if state == 'C' and value != '💣':
                 return False
     return True
+
 
 def count_adjacent_mines(board, row, col):
     """
@@ -45,10 +47,10 @@ def reveal_empty_areas(board, coord_x, coord_y):
             board[coord_x][coord_y][0] == 'C'
     ):
         if board[coord_x][coord_y][1] == 0:
-            # Révéler la case si elle est vide
+            # reveal box if it's empty
             board[coord_x][coord_y][0] = 'R'
 
-            # Vérifiez les cases adjacentes en récursif
+            # check adjacent box
             for dx in [-1, 0, 1]:
                 for dy in [-1, 0, 1]:
                     if dx == 0 or dy == 0:
@@ -57,7 +59,9 @@ def reveal_empty_areas(board, coord_x, coord_y):
             # Si la case n'est pas vide et a une valeur > 0, révélez uniquement cette case
             board[coord_x][coord_y][0] = 'R'
 
+
 def action_box(board, coord_x, coord_y, action):
+
     if action == 'R':
         if board[coord_x][coord_y][0] == 'C':
             # Révéler la case si l'action est 'R' et qu'elle est cachée
